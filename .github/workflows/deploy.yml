@@ -1,0 +1,26 @@
+name: Terraform Deploy
+
+on:
+  repository_dispatch:
+    types: [servicenow-trigger]
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Apply
+      run: |
+        terraform apply -auto-approve \
+        -var="ami_id=${{ github.event.client_payload.ami_id }}" \
+        -var="instance_type=${{ github.event.client_payload.instance_type }}" \
+        -var="key_name=${{ github.event.client_payload.key_name }}"
