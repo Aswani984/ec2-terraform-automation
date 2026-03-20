@@ -11,5 +11,3 @@ resource "aws_instance" "example" {
   }
 }
 
-variable "instance_type" {}
-variable "instance_name" {}
