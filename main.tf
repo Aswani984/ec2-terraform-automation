@@ -2,12 +2,14 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-resource "aws_instance" "ec2" {
-  ami           = var.ami_id
+resource "aws_instance" "example" {
+  ami           = "ami-0f559c3642608c138" # Amazon Linux (example)
   instance_type = var.instance_type
-  key_name      = var.key_name
 
   tags = {
-    Name = "ServiceNow-EC2"
+    Name = var.instance_name
   }
 }
+
+variable "instance_type" {}
+variable "instance_name" {}
