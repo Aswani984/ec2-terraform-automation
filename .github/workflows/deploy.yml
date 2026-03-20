@@ -18,37 +18,4 @@ jobs:
       - name: Print Inputs
         run: |
           echo "Instance Type: ${{ github.event.inputs.instance_type }}"
-          echo "Instance Name: ${{ github.event.inputs.instance_name }}"name: Terraform Deploy
-
-on:
-  repository_dispatch:
-    types: [servicenow-trigger]
-
-jobs:
-  terraform:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    #  ADD HERE (AWS CONFIG)
-    - name: Configure AWS
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-
-    - name: Terraform Init
-      run: terraform init
-
-    - name: Terraform Apply
-      run: |
-        terraform apply -auto-approve \
-        -var="ami_id=${{ github.event.client_payload.ami_id }}" \
-        -var="instance_type=${{ github.event.client_payload.instance_type }}" \
-        -var="key_name=${{ github.event.client_payload.key_name }}"
+          echo "Instance Name: ${{ github.event.inputs.instance_name }}"
