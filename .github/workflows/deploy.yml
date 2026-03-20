@@ -1,4 +1,24 @@
-name: Terraform Deploy
+name: EC2 Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      instance_type:
+        description: "EC2 Instance Type"
+        required: true
+      instance_name:
+        description: "EC2 Instance Name"
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Inputs
+        run: |
+          echo "Instance Type: ${{ github.event.inputs.instance_type }}"
+          echo "Instance Name: ${{ github.event.inputs.instance_name }}"name: Terraform Deploy
 
 on:
   repository_dispatch:
