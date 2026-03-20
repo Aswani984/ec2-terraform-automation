@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami           = "var.ami_id" # Amazon Linux (example)
+  ami           = "ami-05d2d839d4f73aafb" # Amazon Linux (example)
   instance_type = var.instance_type
 
   tags = {
