@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami           = var.ami_id   # ✅ MUST use variable
+  ami           = var.ami_id   #  MUST use variable
   instance_type = var.instance_type
 
   tags = {
